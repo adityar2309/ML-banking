@@ -1,4 +1,89 @@
-# Credit Score Movement Prediction ML Project
+# Credit Score Movement Prediction - ML Project
+
+## 🎯 Business Problem & Solution
+
+**Objective**: Predict whether a customer's credit score will increase, decrease, or remain stable in the next period based on their financial behavior and credit history.
+
+**Business Value**: Enable proactive risk management and targeted customer interventions to improve portfolio performance.
+
+## 🧠 Business Logic & Target Variable
+
+The ML model predicts credit score movement using these business rules:
+
+### **DECREASE** (High Risk - 20.9% of customers)
+Customers likely to see credit score decline due to:
+- High days past due (>15 days in last 3 months)
+- Very high credit utilization (>80%)
+- Multiple recent credit inquiries (≥4 in 6 months)
+- Poor repayment history (<40% score)
+- High EMI-to-income ratio (>35%) with payment delays
+- Recent defaults (<6 months ago)
+
+### **INCREASE** (Low Risk - 1.3% of customers)
+Customers likely to see credit score improve due to:
+- Excellent repayment history (>80% score)
+- Low credit utilization (<30%)
+- Comfortable EMI-to-income ratio (<25%)
+- No recent payment delays
+- Minimal credit inquiries (≤1 in 6 months)
+- No recent defaults (>24 months)
+
+### **STABLE** (Medium Risk - 77.8% of customers)
+Customers who don't meet criteria for increase/decrease
+
+## 🔍 Key Features Used
+
+**Financial Behavior**:
+- Credit utilization ratio
+- EMI-to-income ratio
+- Current outstanding amounts
+
+**Payment History**:
+- Repayment history score (0-100)
+- Days past due in last 3 months
+- Months since last default
+
+**Credit Seeking Behavior**:
+- Number of hard inquiries (last 6 months)
+- Recent loan disbursed amounts
+
+**Demographics**:
+- Age, gender, location
+- Monthly income
+
+## 🤖 ML Implementation
+
+**Problem Type**: Multi-class classification (3 classes)
+
+**Models**: RandomForest and XGBoost with hyperparameter tuning
+
+**Key Challenges Addressed**:
+- **Class imbalance**: Only 1.3% "increase" cases → Used SMOTE oversampling
+- **Feature engineering**: Created ratio features (EMI/income, outstanding/income)
+- **Model interpretability**: SHAP analysis for explainable predictions
+
+**Performance**: ~85-90% accuracy with F1-macro score of ~0.80-0.85
+
+## 💼 Business Impact
+
+**Risk Segmentation** enables targeted interventions:
+
+1. **High-Risk (Decrease)**: Proactive credit counseling, hardship programs
+2. **High-Opportunity (Increase)**: Premium rewards, credit limit increases
+3. **Stable**: Retention programs, predictive monitoring
+
+**ROI**: Early identification of at-risk customers can reduce defaults by 15-25% while targeted upselling to low-risk customers can increase revenue by 10-20%.
+
+## 🚀 Technical Highlights
+
+- **Synthetic Data Generation**: Created realistic 25K customer dataset with correlated features
+- **Feature Engineering**: Derived business-meaningful ratios and indicators
+- **Model Comparison**: Systematic evaluation of multiple algorithms
+- **Explainability**: SHAP values for model interpretability and business insights
+
+---
+
+*This project demonstrates end-to-end ML pipeline development with strong business logic, addressing real-world challenges in credit risk management.*
 
 ## 🎯 Project Overview
 
